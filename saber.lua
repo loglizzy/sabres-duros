@@ -2067,7 +2067,7 @@ do -- Main
             if enabled and shared.entire_works == script then
                 update()
                 remote:FireServer()
-                else
+                elseif not shared.entire_works == script then
                     wait(99999); return
             end
         end)
@@ -2089,7 +2089,7 @@ do -- Main
                 if tool then
                     tool.Parent = character
                 end
-            else
+            elseif not shared.entire_works == script then
                 wait(99999); return
             end
         end)
@@ -2116,7 +2116,7 @@ do -- Main
                     
                     wait(.100)
                     busy = false
-                else
+                elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2135,7 +2135,7 @@ do -- Main
         RunService.RenderStepped:connect(function()
             local boss = game.Workspace:FindFirstChild('Boss')
             
-            if enabled and boss then
+            if enabled and boss and entire_works == script then
                 if boss:FindFirstChild('HumanoidRootPart') and boss:FindFirstChild('Humanoid') then
                     local broot = boss.HumanoidRootPart
                     update()
@@ -2147,6 +2147,8 @@ do -- Main
                         root.CFrame = broot.CFrame
                     end
                 end
+            elseif not shared.entire_works == script then
+                wait(99999); return
             end
         end)
         
@@ -2179,7 +2181,7 @@ do -- Main
                 if tool then
                     tool.RemoteClick:FireServer()
                 end
-            else
+            elseif not shared.entire_works == script then
                 wait(99999); return
             end
         end)
@@ -2192,7 +2194,7 @@ do -- Main
             if enabled and shared.entire_works == script then
                 update()
                 humanoid:ChangeState(11)
-            else
+            elseif not shared.entire_works == script then
                 wait(99999); return
             end
         end)
@@ -2212,7 +2214,7 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Swords")
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2231,7 +2233,7 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2257,7 +2259,7 @@ do -- Upgrades
                             break
                         end
                     end
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2276,7 +2278,7 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2295,7 +2297,7 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("PetAuras")
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2329,7 +2331,7 @@ do -- Eggs
                     end
                     
                     remote:InvokeServer(best, 1)
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2348,7 +2350,7 @@ do -- Eggs
             while wait(1) do
                 if enabled and shared.entire_works == script then
                     remote:FireServer()
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2443,7 +2445,7 @@ do -- Eggs
                         
                         remote:FireServer(response[1], "EquipToggle")
                     end
-                    else
+                    elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
@@ -2466,7 +2468,7 @@ do -- Misc
         player.Idled:Connect(function()
             if enabled and shared.entire_works == script then
                 VirtualUser:ClickButton1(Vector2.new(0,0), game.Workspace.CurrentCamera.CFrame)
-                else
+                elseif not shared.entire_works == script then
                     wait(99999); return
             end
         end)
@@ -2534,7 +2536,7 @@ do -- Misc
             
             gamerawMeta.__namecall = detectedProtection(function(self, ...)
                 if character and humanoid then
-                    if self == humanoid and k == 'WalkSpeed' then
+                    if self == humanoid and k == 'WalkSpeed' and entire_works == script then
                         return speed
                     end
                 end
@@ -2608,7 +2610,7 @@ do -- Misc
 	                		v1.face:Destroy()
 	                	end
 	                end
-	                else
+	                elseif not shared.entire_works == script then
                     wait(99999); return
                 end
             end
