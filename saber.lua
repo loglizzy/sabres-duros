@@ -1,4 +1,5 @@
-local entire_works = true
+shared.entire_works = script
+
 local player = game.Players.LocalPlayer
 
 local RunService = game:GetService('RunService')
@@ -25,7 +26,6 @@ local library = {}
 
 do -- Lib
     if game.CoreGui:FindFirstChild('imgui') then
-        entire_works = false
         game.CoreGui.imgui:Destroy()
     end
     
@@ -2064,7 +2064,7 @@ do -- Main
         end)
         
         RunService.RenderStepped:connect(function()
-            if enabled and entire_works then
+            if enabled and entire_works == script then
                 update()
                 remote:FireServer()
             end
@@ -2079,7 +2079,7 @@ do -- Main
         end)
         
         RunService.RenderStepped:connect(function()
-            if enabled and entire_works then
+            if enabled and entire_works == script then
                 update()
                 
                 local tool = backpack:FindFirstChildOfClass('Tool')
@@ -2097,7 +2097,7 @@ do -- Main
         
         spawn(function()
             while wait(.5) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     update()
                     busy = true
                     
@@ -2165,7 +2165,7 @@ do -- Main
         end)
         
         RunService.RenderStepped:connect(function()
-            if enabled and entire_works then
+            if enabled and entire_works == script then
                 update()
                 
                 local tool = character:FindFirstChildOfClass('Tool')
@@ -2181,7 +2181,7 @@ do -- Main
         local enabled = false
         
         RunService.RenderStepped:connect(function()
-            if enabled and entire_works then
+            if enabled and entire_works == script then
                 update()
                 humanoid:ChangeState(11)
             end
@@ -2200,7 +2200,7 @@ do -- Upgrades
         
         spawn(function()
             while wait(3) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Swords")
                 end
             end
@@ -2217,7 +2217,7 @@ do -- Upgrades
         
         spawn(function()
             while wait(3) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
                 end
             end
@@ -2234,7 +2234,7 @@ do -- Upgrades
         
         spawn(function()
             while wait(5) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     local data = game.ReplicatedStorage.Events.UpdateData:InvokeServer()
                     
                     for i,v in pairs(game.ReplicatedStorage.ShopItems.Classes:GetChildren()) do
@@ -2258,7 +2258,7 @@ do -- Upgrades
         
         spawn(function()
             while wait(3) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
                 end
             end
@@ -2275,7 +2275,7 @@ do -- Upgrades
         
         spawn(function()
             while wait(3) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("PetAuras")
                 end
             end
@@ -2293,7 +2293,7 @@ do -- Eggs
         
         spawn(function()
             while wait(2) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     local data = game.ReplicatedStorage.Events.UpdateData:InvokeServer()
                     local remote = game.ReplicatedStorage.Events.HatchEggs
                     local best
@@ -2324,7 +2324,7 @@ do -- Eggs
         
         spawn(function()
             while wait(1) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     remote:FireServer()
                 end
             end
@@ -2379,7 +2379,7 @@ do -- Eggs
         
         spawn(function()
             while wait(1) do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
                     local response = get_best_pet()
                     local found
                     
@@ -2438,7 +2438,7 @@ do -- Misc
         end)
         
         player.Idled:Connect(function()
-            if enabled and entire_works then
+            if enabled and entire_works == script then
                 VirtualUser:ClickButton1(Vector2.new(0,0), game.Workspace.CurrentCamera.CFrame)
             end
         end)
@@ -2576,7 +2576,7 @@ do -- Misc
         
         spawn(function()
             while wait() do
-                if enabled and entire_works then
+                if enabled and entire_works == script then
 	                for i = 1, 5 do
 	                	update()
 	                	local v1 = root:FindFirstChildOfClass('BillboardGui') or character.Head:FindFirstChildOfClass('BillboardGui')
