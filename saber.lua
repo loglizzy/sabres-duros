@@ -2534,7 +2534,7 @@ do -- Misc
             
             gamerawMeta.__namecall = detectedProtection(function(self, ...)
                 if character and humanoid then
-                    if self.Name == 'Humanoid' and k == 'WalkSpeed' then
+                    if self == humanoid and k == 'WalkSpeed' then
                         return speed
                     end
                 end
@@ -2548,52 +2548,6 @@ do -- Misc
                 humanoid.WalkSpeed = v
             end, {
                 min = 16,
-                max = 200
-            })
-        end
-    end
-    
-    if detectedProtection then
-        do -- Jump power
-            character = player.Character or nil
-            humanoid = character.Humanoid or nil
-            
-            local jump
-            if humanoid then
-                jump = humanoid.JumpPower
-            else
-                jump = 16
-            end
-            
-            RunService.RenderStepped:Connect(function()
-                update()
-                if not jump then
-                    jump = humanoid.JumpPower
-                end
-                
-                humanoid.JumpPower = jump
-            end)
-            
-            local gamerawMeta = getrawmetatable(game)
-            if (setreadonly) then setreadonly(gamerawMeta, false) end
-            if (make_writeable) then make_writeable(gamerawMeta) end
-            
-            local oldMeta = gamerawMeta.__namecall
-            
-            gamerawMeta.__namecall = detectedProtection(function(self, ...)
-                if character and humanoid then
-                    if self.Name == 'Humanoid' and k == 'jump' then
-                        return jump
-                    end
-                end
-                
-                return oldMeta(self, ...)
-            end)
-            
-            Misc:AddSlider('Jump Power', function(v)
-                jump = v
-            end, {
-                min = 32,
                 max = 200
             })
         end
