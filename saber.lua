@@ -2067,6 +2067,8 @@ do -- Main
             if enabled and shared.entire_works == script then
                 update()
                 remote:FireServer()
+                else
+                    wait(99999); return
             end
         end)
     end
@@ -2087,6 +2089,8 @@ do -- Main
                 if tool then
                     tool.Parent = character
                 end
+            else
+                wait(99999); return
             end
         end)
     end
@@ -2112,6 +2116,8 @@ do -- Main
                     
                     wait(.100)
                     busy = false
+                else
+                    wait(99999); return
                 end
             end
         end)
@@ -2173,6 +2179,8 @@ do -- Main
                 if tool then
                     tool.RemoteClick:FireServer()
                 end
+            else
+                wait(99999); return
             end
         end)
     end
@@ -2184,6 +2192,8 @@ do -- Main
             if enabled and shared.entire_works == script then
                 update()
                 humanoid:ChangeState(11)
+            else
+                wait(99999); return
             end
         end)
         
@@ -2202,6 +2212,8 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Swords")
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2219,6 +2231,8 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2243,6 +2257,8 @@ do -- Upgrades
                             break
                         end
                     end
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2260,6 +2276,8 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2277,6 +2295,8 @@ do -- Upgrades
             while wait(3) do
                 if enabled and shared.entire_works == script then
                     game.ReplicatedStorage.Events.BuyAll:FireServer("PetAuras")
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2309,6 +2329,8 @@ do -- Eggs
                     end
                     
                     remote:InvokeServer(best, 1)
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2326,6 +2348,8 @@ do -- Eggs
             while wait(1) do
                 if enabled and shared.entire_works == script then
                     remote:FireServer()
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2419,6 +2443,8 @@ do -- Eggs
                         
                         remote:FireServer(response[1], "EquipToggle")
                     end
+                    else
+                    wait(99999); return
                 end
             end
         end)
@@ -2440,6 +2466,8 @@ do -- Misc
         player.Idled:Connect(function()
             if enabled and shared.entire_works == script then
                 VirtualUser:ClickButton1(Vector2.new(0,0), game.Workspace.CurrentCamera.CFrame)
+                else
+                    wait(99999); return
             end
         end)
     end
@@ -2624,6 +2652,8 @@ do -- Misc
 	                		v1.face:Destroy()
 	                	end
 	                end
+	                else
+                    wait(99999); return
                 end
             end
         end)
