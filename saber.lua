@@ -4,7 +4,7 @@ local player = game.Players.LocalPlayer
 
 local RunService = game:GetService('RunService')
 local VirtualUser = game:GetService('VirtualUser')
-local detectedProtection = newcclosure or protect_function or coroutine.wrap
+local detectedProtection = newcclosure or protect_function or coroutine.wrap or nil
 
 local backpack
 local character
@@ -2503,98 +2503,100 @@ do -- Misc
         end)
     end
     
-    do -- WalkSpeed
-        character = player.Character or nil
-        humanoid = character.Humanoid or nil
-        
-        local speed
-        if humanoid then
-            speed = humanoid.WalkSpeed
-        else
-            speed = 16
-        end
-        
-        RunService.RenderStepped:Connect(function()
-            update()
-            if not speed then
+    if detectedProtection then
+        do -- WalkSpeed
+            character = player.Character or nil
+            humanoid = character.Humanoid or nil
+            
+            local speed
+            if humanoid then
                 speed = humanoid.WalkSpeed
+            else
+                speed = 16
             end
             
-            humanoid.WalkSpeed = speed
-        end)
-        
-        local detectedProtection = detectedProtection or protect_function or coroutine.wrap
-    
-        local gamerawMeta = getrawmetatable(game)
-        if (setreadonly) then setreadonly(gamerawMeta, false) end
-        if (make_writeable) then make_writeable(gamerawMeta) end
-        
-        local oldMeta = gamerawMeta.__namecall
-        
-        gamerawMeta.__namecall = detectedProtection(function(self, ...)
-            if character and humanoid then
-                if self.Name == 'Humanoid' and k == 'WalkSpeed' then
-                    return speed
+            RunService.RenderStepped:Connect(function()
+                update()
+                if not speed then
+                    speed = humanoid.WalkSpeed
                 end
-            end
+                
+                humanoid.WalkSpeed = speed
+            end)
             
-            return oldMeta(self, ...)
-        end)
+            local detectedProtection = detectedProtection or protect_function or coroutine.wrap
         
-        Misc:AddSlider('WalkSpeed', function(v)
-            speed = v
-            update()
-            humanoid.WalkSpeed = v
-        end, {
-            min = 16,
-            max = 200
-        })
+            local gamerawMeta = getrawmetatable(game)
+            if (setreadonly) then setreadonly(gamerawMeta, false) end
+            if (make_writeable) then make_writeable(gamerawMeta) end
+            
+            local oldMeta = gamerawMeta.__namecall
+            
+            gamerawMeta.__namecall = detectedProtection(function(self, ...)
+                if character and humanoid then
+                    if self.Name == 'Humanoid' and k == 'WalkSpeed' then
+                        return speed
+                    end
+                end
+                
+                return oldMeta(self, ...)
+            end)
+            
+            Misc:AddSlider('WalkSpeed', function(v)
+                speed = v
+                update()
+                humanoid.WalkSpeed = v
+            end, {
+                min = 16,
+                max = 200
+            })
+        end
     end
     
-    do -- Jump power
-        character = player.Character or nil
-        humanoid = character.Humanoid or nil
-        
-        local jump
-        if humanoid then
-            jump = humanoid.JumpPower
-        else
-            jump = 16
-        end
-        
-        RunService.RenderStepped:Connect(function()
-            update()
-            if not jump then
+    if detectedProtection then
+        do -- Jump power
+            character = player.Character or nil
+            humanoid = character.Humanoid or nil
+            
+            local jump
+            if humanoid then
                 jump = humanoid.JumpPower
+            else
+                jump = 16
             end
             
-            humanoid.JumpPower = jump
-        end)
-        
-        local detectedProtection = detectedProtection or protect_function or coroutine.wrap
-    
-        local gamerawMeta = getrawmetatable(game)
-        if (setreadonly) then setreadonly(gamerawMeta, false) end
-        if (make_writeable) then make_writeable(gamerawMeta) end
-        
-        local oldMeta = gamerawMeta.__namecall
-        
-        gamerawMeta.__namecall = detectedProtection(function(self, ...)
-            if character and humanoid then
-                if self.Name == 'Humanoid' and k == 'jump' then
-                    return jump
+            RunService.RenderStepped:Connect(function()
+                update()
+                if not jump then
+                    jump = humanoid.JumpPower
                 end
-            end
+                
+                humanoid.JumpPower = jump
+            end)
             
-            return oldMeta(self, ...)
-        end)
-        
-        Misc:AddSlider('Jump Power', function(v)
-            jump = v
-        end, {
-            min = 32,
-            max = 200
-        })
+            local gamerawMeta = getrawmetatable(game)
+            if (setreadonly) then setreadonly(gamerawMeta, false) end
+            if (make_writeable) then make_writeable(gamerawMeta) end
+            
+            local oldMeta = gamerawMeta.__namecall
+            
+            gamerawMeta.__namecall = detectedProtection(function(self, ...)
+                if character and humanoid then
+                    if self.Name == 'Humanoid' and k == 'jump' then
+                        return jump
+                    end
+                end
+                
+                return oldMeta(self, ...)
+            end)
+            
+            Misc:AddSlider('Jump Power', function(v)
+                jump = v
+            end, {
+                min = 32,
+                max = 200
+            })
+        end
     end
     
     Misc:AddLabel('Universal functions')
