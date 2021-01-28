@@ -17,12 +17,16 @@ local function update()
 end
 
 local ui_options  = {
-		toggle_key  = Enum.KeyCode.P,
+		toggle_key  = Enum.KeyCode.RightShift,
 	}
 
 local library = {}
 
 do -- Lib
+    if game.CoreGui:FindFirstChild('imgui') then
+        game.CoreGui.imgui:Destroy()
+    end
+    
     local imgui = Instance.new("ScreenGui")
     local Prefabs = Instance.new("Frame")
     local Label = Instance.new("TextLabel")
@@ -2242,6 +2246,40 @@ do -- Upgrades
         end)
         
         Upgrades:AddSwitch('Auto Buy Class', function(v)
+            enabled = v
+        end)
+    end
+    
+    do -- Auto Buy DNA
+        local remote = game.ReplicatedStorage.Events.BuyAll
+        local enabled = false
+        
+        spawn(function()
+            while wait(3) do
+                if enabled then
+                    game.ReplicatedStorage.Events.BuyAll:FireServer("Backpacks")
+                end
+            end
+        end)
+        
+        Upgrades:AddSwitch('Auto Buy Aura', function(v)
+            enabled = v
+        end)
+    end
+    
+    do -- Auto Buy DNA
+        local remote = game.ReplicatedStorage.Events.BuyAll
+        local enabled = false
+        
+        spawn(function()
+            while wait(3) do
+                if enabled then
+                    game.ReplicatedStorage.Events.BuyAll:FireServer("PetAuras")
+                end
+            end
+        end)
+        
+        Upgrades:AddSwitch('Auto Buy Pet Aura', function(v)
             enabled = v
         end)
     end
